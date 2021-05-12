@@ -1,5 +1,5 @@
 module.exports = {
-  HOST: "mysql-db",
+  HOST: "localhost",
   USER: "root",
   PASSWORD: "dbuserpwd",
   DB: "boilerplate_db",
