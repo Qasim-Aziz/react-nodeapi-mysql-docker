@@ -47,6 +47,21 @@ services:
     
     networks:
       - boilerplate-network
+  react-pages2:
+    build:
+      context: ./react-page
+      dockerfile: Dockerfile 
+    #command: nginx -s reload
+    
+    restart: on-failure
+    
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+    
+    networks:
+      - boilerplate-network
 
 
 
