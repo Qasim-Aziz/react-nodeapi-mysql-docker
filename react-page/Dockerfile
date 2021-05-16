@@ -1,25 +1,27 @@
-FROM node:12 as builder
+FROM hoosin/alpine-nginx-nodejs:latest
 
-WORKDIR /app
+MAINTAINER hoosin <hoosin.git@gmail.cn>
 
-ADD /package.*json /app
+ENV APP_ROOT /home/example.hoosin.com
+ENV SRC_DIR ./node_modules ./public ./src
+ENV NGINX_STATIC /usr/share/nginx/html/
+ENV NGINX_CONF /etc/nginx/
 
+WORKDIR $APP_ROOT
+COPY . $APP_ROOT
 
+RUN node -v \
+    && npm -v \
+    && yarn -v \
+    && yarn config set registry https://registry.npm.taobao.org \
+    && yarn config get registry \
+    && yarn install --verbose \
+    && yarn build \
+    && cp -r nginx/* $NGINX_CONF \
+    && cp -r build/* $NGINX_STATIC \
+    && rm -rf $SRC_DIR
 
-RUN yarn
-# ADD / /app
-
-COPY . /app
-RUN yarn build
-
-
-
-RUN apt-get update
-RUN apt-get install -y nginx
-RUN cp -R ./build /var/www/html
-RUN rm -f /etc/nginx/sites-enabled/default
-ADD ./react-app.conf /etc/nginx/sites-enabled/
-RUN service nginx restart
 EXPOSE 80
-#CMD ["nginx", "-g", "daemon off"]
+RUN nginx -t
 
+CMD ["nginx","-g","daemon off;"]
