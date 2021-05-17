@@ -6,8 +6,7 @@ import "./App.css";
 import AddTutorial from "./components/add-tutorial.component";
 import Tutorial from "./components/tutorial.component";
 import TutorialsList from "./components/tutorials-list.component";
-
-
+ 
 class App extends Component {
   render() {
     return (
@@ -32,8 +31,8 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/AddTutorials"]} component={TutorialsList} />
-          <Route exact path="/add" component={AddTutorial} />
+            <Route exact path="/" component={TutorialsList} />
+            <Route exact path="/add" component={AddTutorial} />
             <Route path="/tutorials/:id" component={Tutorial} />
           </Switch>
         </div>
