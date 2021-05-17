@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TutorialDataService from "../services/tutorial.service";
-import Tutorialdatacomponent from './tutorial-data.component';
+import Tutorialdatacomponent from "./tutorial-data.component";
+import { Link } from "react-router-dom";
 
 class TutorialsList extends Component {
   constructor(props) {
@@ -135,6 +136,7 @@ class TutorialsList extends Component {
           >
             Remove All
           </button>
+          <Link to={{ pathname : "http://localhost:80/" }} target="_blank" rel="noopener noreferrer" className="m-3 btn btn-sm btn-info">View All</Link>
         </div>
         <div className="col-md-6">
           {currentTutorial ? (
@@ -151,4 +153,4 @@ class TutorialsList extends Component {
   }
 }
 
-export default TutorialsList 
+export default TutorialsList;
