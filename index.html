@@ -40,10 +40,20 @@
         </section>
         <section class="column">
             <div class="container-if">
-                <iframe src="http://localhost" frameborder="0"></iframe>
+                <iframe id="iframe" src="http://localhost" frameborder="0"></iframe>
             </div>
         </section>
     </div>
 </body>
 
+<script>
+    window.setInterval(function() {
+        reloadIFrame()
+    }, 3);
+
+    function reloadIFrame() {
+        console.log('reloading..');
+        document.getElementById('iframe').contentWindow.location.reload();
+    }
+</script>
 </html>
