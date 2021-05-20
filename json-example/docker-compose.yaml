@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  dfj-app-one:
+    build:
+      context: ./dfj-app-one
+      dockerfile: Dockerfile
+    command: npm start
+    restart: on-failure
+    
+    ports:
+      - "8181:80"
+    expose:
+      - "80"
+    volumes:
+      - ./json-data/data.json:/app/src/data.json
+    
+    networks:
+      - boilerplate-network
+  dfj-app-two:
+    build:
+      context: ./dfj-app-two
+      dockerfile: Dockerfile 
+    command: npm start
+    
+    restart: on-failure
+    
+    ports:
+      - "8282:80"
+    expose:
+      - "80"
+    volumes:
+      - ./json-data/data.json:/app/src/data.json
+    
+    networks:
+      - boilerplate-network
+
+
+
+networks:
+  boilerplate-network:
+    driver: bridge
