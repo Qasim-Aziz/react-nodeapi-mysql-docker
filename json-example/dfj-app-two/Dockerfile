@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14
 
 WORKDIR /app
 
@@ -6,7 +6,9 @@ ADD /package.*json /app
 
 
 
-RUN yarn
+RUN npm i
+RUN npm install @material-ui/icons
+RUN npm install @material-ui/core
 # ADD / /app
 
 COPY . /app
